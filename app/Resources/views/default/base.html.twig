@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Wypożyczalnia samochodów!{% endblock %}</title>
+        {% block stylesheets %}
+            {% stylesheets
+                '../app/Resources/public/bootstrap/css/bootstrap.min.css'
+                '../app/Resources/public/css/style.css'
+            %}
+
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet">
+            <link href="{{asset('bundles/projekt/css/bootstrap.min.css')}}" rel="stylesheet">
+            {% endstylesheets %}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{{path('homepage')}}"><img src="{{ asset('logo.png') }}"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('cart') }}">Koszyk</a></li>
+                {% if app.user %}
+                    {% if app.user.hasRole('ROLE_ADMIN') %}
+                        <li><a href="{{ path('admin') }}">Panel administracyjny</a></li>
+                    {% else %}
+                       <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Witaj, {{ app.user}}<span class="caret"></span></a>
+                          <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('order_list') }}">Moje zamówienia</a></li>
+                            <li><a href="{{ path('order_cars') }}">Moje wypożyczone samochody</a></li>
+                          </ul>
+                        </li>
+                    {% endif %}
+                    <li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>
+                {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}">Zaloguj</a></li>
+                {% endif %}
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        
+        <div class="container">
+            {% include "::flashes.html.twig" %}
+        
+            <!-- Begin page content -->
+            {% block body %}{% endblock %}
+        </div>
+        
+        <footer>
+            <div class="ul-wrapper">
+               <ul class="list-inline">
+                   <li>Jan Michałak</li>
+                   <li>Vladyslav Turak</li>
+                   <li>Danylo Samotys</li>
+               </ul>
+           </div>
+        </footer>
+    
+        {% block javascripts %}
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            {% javascripts
+                '../app/Resources/public/bootstrap/js/bootstrap.min.js'
+            %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        
+        {% endblock %}
+    </body>
+</html>

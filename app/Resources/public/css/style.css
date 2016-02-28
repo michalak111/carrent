@@ -1,0 +1,33 @@
+body {
+    padding-top: 80px;
+}
+
+.car-preview .thumbnail > img {
+    height: 300px !important;
+}
+
+.car-preview p {
+    font-size: 22px;
+
+    text-align: center;
+}
+
+.car-preview .thumbnail:hover {
+  text-decoration: none;
+}
+
+footer {
+  margin-top: 100px;
+  border-top: 1px solid #ccc;
+}
+
+footer .list-inline {
+  padding: 40px;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.ul-wrapper {
+  display: table;
+  margin: 0 auto;
+}

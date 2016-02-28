@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% include 'AppBundle:Car:list.html.twig' with {'cars': cars} %}
+
+        <div class="col-md-3">
+            <h3 class="text-center">Najczęściej wypożyczane</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Samochód</th>
+                        <th>Ilość</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% for car in popular %}
+                    <tr>
+                        <td>{{ car.name }}</td>
+                        <td>{{ car.nbOrders }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+        
+{% endblock %}

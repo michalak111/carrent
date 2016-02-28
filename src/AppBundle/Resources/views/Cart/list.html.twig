@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+      <div class="page-header">
+        <h1>Koszyk</h1>
+      </div>
+      <table class="table table-striped">
+        <thead>
+            <tr>
+              <th>#</th>
+              <th>Nazwa samochodu</th>
+              <th>Modelk</th>
+              <th>Cena wypożyczenia</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for car in cart.cars %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="{{ path('car_show', {'slug': car.slug}) }}">{{ car.name }}</a></td>
+                    <td>{{ car.categories|join(", ") }}</td>
+                    <td>{{ car.price|number_format }}</td>
+                    <td><a href="{{ path('cart_remove', {'slug': car.slug}) }}">usuń</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Koszyk jest pusty.</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+      
+    {% if cart.cars|length > 0 %}
+            
+        <a class="btn btn-info" href="{{ path('car_order') }}" title="Złóż zamówienie">Złóż zamówienie</a>
+        
+    {% endif %}
+{% endblock %}

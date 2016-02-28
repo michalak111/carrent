@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+ {% block title %}{{ car.name }}{% endblock %}
+
+{% block body %}
+
+
+    <div class="row"><img class="center-block" width=400 src="{{ asset('uploads/' ~ car.picture) }}" /></div>
+
+   <div class="row">
+       <div class="col-md-9">
+           <h3>Opis</h3>
+           <hr>
+           <p style="text-align: justify;">{{ car.description }}</p>
+           <hr>
+           <a href="{{ path('car_rent', {'slug': car.slug}) }}" class="btn btn-info">Wypożycz</a>
+       </div>
+       <div class="col-md-3">
+           <h3>{{ block('title') }}</h3>
+           <hr>
+           <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Kategoria</td>
+                        {% for category in car.categories %}
+                        <td>{{ category.name }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>Cena</td>
+                        <td>{{ car.price }} zł</td>
+                    </tr>
+                    <tr>
+                        <td>Model</td>
+                        <td>{{ car.model|raw }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+       </div>
+   </div>
+
+    <br>
+
+     <br>
+
+  
+
+  <br><br>
+
+  
+{% endblock %}

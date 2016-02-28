@@ -1,0 +1,13 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Zamówienie: #{{ order.id }}{% endblock %}
+
+{% block body %}
+<h1>{{ block('title') }}</h1>
+
+<h2>Lista zamówionych samochodów</h2>
+
+{{ order.cars|length }}
+ {% include 'AppBundle:Car:list2.html.twig' with {'cars': order.cars} %} 
+
+{% endblock %}

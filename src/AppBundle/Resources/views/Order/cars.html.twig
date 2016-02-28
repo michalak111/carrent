@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <h1>Lista wypożyczonych samochodów</h1>
+    
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Zdjęcie</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="{{ path('car_show', {'slug': car.slug}) }}" title="Zobacz więcej o: {{ car.name }}"><img width=100 src="{{ asset('uploads/' ~ car.picture) }}" /></a></td>
+                    <td><a href="{{ path('car_show', {'slug': car.slug}) }}" title="Zobacz więcej o: {{ car.name }}">{{ car.name }}</a></td>
+                    <td>{{ car.categories|join(", ") }}</td>
+                    <td><a href="{{ path('car_watch', {'slug': car.slug}) }}">Oglądaj</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Nie znaleziono wypożyczonych samochodów.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+{% endblock %}

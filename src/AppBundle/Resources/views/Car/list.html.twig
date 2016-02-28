@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12">
+        <h1 class="text-center">Nasze samochody</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9">
+    <div class="row">
+    {% for car in cars %}
+      <div class="col-md-6 car-preview">
+        <a href="{{ path('car_show', {'slug': car.slug}) }}" title="Zobacz więcej o: {{ car.name }}" class = "thumbnail">
+          <img src="{{ asset('uploads/' ~ car.picture) }}" alt = "Generic placeholder thumbnail">
+          <p>{{ car.name }}</p>
+        </a>
+      </div>
+    {% endfor %} 
+    </div>
+  </div>
+
+
+
+
+
